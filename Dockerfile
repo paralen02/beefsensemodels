@@ -1,12 +1,12 @@
-FROM ubuntu:20.04
+FROM alpine:3.14
 
 # Install TensorFlowServing
-RUN apt update && \
-    apt-get install -y curl gnupg && \
+RUN apk add --no-cache curl gnupg && \
+    mkdir -p /etc/apt/sources.list.d && \
     echo "deb http://storage.googleapis.com/tensorflow-serving-apt stable tensorflow-model-server tensorflow-model-server-universal" | tee /etc/apt/sources.list.d/tensorflow-serving.list && \
     curl https://storage.googleapis.com/tensorflow-serving-apt/tensorflow-serving.release.pub.gpg | apt-key add - && \
-    apt update && \
-    apt-get install -y tensorflow-model-server
+    apk update && \
+    apk add --no-cache tensorflow-model-server
 
 # Copy the model to serve
 COPY saved3 /models/saved3_model
