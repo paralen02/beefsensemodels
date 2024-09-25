@@ -12,4 +12,4 @@ RUN apt update && \
 COPY saved3 /models/saved3_model
 
 # Run the tensorflow_model_server with the right parameters
-CMD ["sh", "-c", "tensorflow_model_server --port=8500 --rest_api_port=${PORT} --model_base_path=/models/saved3_model --model_name=saved3_model"]
+CMD ["sh", "-c", "tensorflow_model_server --port=8500 --rest_api_port=$PORT --model_base_path=/models/saved3_model --model_name=saved3_model"]
